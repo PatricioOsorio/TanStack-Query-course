@@ -1,5 +1,4 @@
 import { Loading } from '@components/shared/Loading';
-import { RandomNumber } from '@components/shared/RandomNumber';
 import { queryKeys } from '@libs/tanstack-query/queryKeys';
 import { useQuery } from '@tanstack/react-query';
 
@@ -7,6 +6,8 @@ const url =
   'https://www.random.org/integers/?num=1&min=1&max=500&col=1&base=10&format=plain&rnd=new';
 
 const getCryptoNumber = async (): Promise<number> => {
+  throw 'no se puedo obtener el numero';
+
   const res = await fetch(url);
   const data = await res.json();
 
@@ -40,7 +41,7 @@ const HomePage = () => {
         </p>
       )}
 
-      <RandomNumber />
+      {/* <RandomNumber /> */}
 
       {error && <p className="text-error">{JSON.stringify(error)}</p>}
 
