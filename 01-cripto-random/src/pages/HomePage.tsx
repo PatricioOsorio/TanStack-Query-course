@@ -1,4 +1,5 @@
 import { Loading } from '@components/shared/Loading';
+import { RandomNumber } from '@components/shared/RandomNumber';
 import { queryKeys } from '@libs/tanstack-query/queryKeys';
 import { useQuery } from '@tanstack/react-query';
 
@@ -38,6 +39,8 @@ const HomePage = () => {
           Number value <span>{number}</span>
         </p>
       )}
+
+      <RandomNumber />
 
       {error && <p className="text-error">{JSON.stringify(error)}</p>}
 

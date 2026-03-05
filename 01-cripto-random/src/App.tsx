@@ -1,11 +1,11 @@
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import {  QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 import HomePage from '@pages/HomePage';
+import { queryClient } from '@libs/tanstack-query/queryClient';
 
 import './styles/app.css';
 
-const queryClient = new QueryClient();
 
 const App = () => {
   return (
