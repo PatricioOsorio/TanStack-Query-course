@@ -1,40 +1,33 @@
-import { useEffect, useState } from 'react';
 import { Loading } from '@components/shared/Loading';
+import { queryKeys } from '@libs/tanstack-query/queryKeys';
+import { useQuery } from '@tanstack/react-query';
 
 const url =
   'https://www.random.org/integers/?num=1&min=1&max=500&col=1&base=10&format=plain&rnd=new';
 
+const getCryptoNumber = async (): Promise<number> => {
+  const res = await fetch(url);
+  const data = await res.json();
+
+  return Number(data);
+};
+
 const HomePage = () => {
-  const [number, setNumber] = useState(0);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const [refreshToken, setRefreshToken] = useState(0);
-
-  useEffect(() => {
-    const getData = async () => {
-      try {
-        setIsLoading(true);
-        const res = await fetch(url);
-        const data = (await res.json()) as number;
-
-        setNumber(data);
-
-        setError(null);
-      } catch {
-        setError('something went wrong');
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    getData();
-  }, [refreshToken]);
+  const {
+    data: number,
+    isFetching,
+    error,
+    refetch,
+  } = useQuery({
+    queryKey: queryKeys.randomNumber(),
+    queryFn: getCryptoNumber,
+  });
 
   const handleRefreshToken = () => {
-    setRefreshToken((prev) => prev + 1);
+    refetch();
   };
 
-  if (isLoading) return <Loading.FullPage />;
+  if (isFetching) return <Loading.FullPage />;
 
   return (
     <article className="page">
@@ -46,7 +39,7 @@ const HomePage = () => {
         </p>
       )}
 
-      {error && <p className="text-error">{error}</p>}
+      {error && <p className="text-error">{JSON.stringify(error)}</p>}
 
       <button className="btn btn-primary" onClick={handleRefreshToken}>
         New number
