@@ -1,29 +1,9 @@
 import { Loading } from '@components/shared/Loading';
-import { queryKeys } from '@libs/tanstack-query/queryKeys';
-import { useQuery } from '@tanstack/react-query';
-
-const url =
-  'https://www.random.org/integers/?num=1&min=1&max=500&col=1&base=10&format=plain&rnd=new';
-
-const getCryptoNumber = async (): Promise<number> => {
-  throw 'no se puedo obtener el numero';
-
-  const res = await fetch(url);
-  const data = await res.json();
-
-  return Number(data);
-};
+import { useRandom } from '@hooks/useRandom';
 
 const HomePage = () => {
-  const {
-    data: number,
-    isFetching,
-    error,
-    refetch,
-  } = useQuery({
-    queryKey: queryKeys.randomNumber(),
-    queryFn: getCryptoNumber,
-  });
+  const { randomQuery } = useRandom();
+  const { refetch, isFetching, error, data: number } = randomQuery;
 
   const handleRefreshToken = () => {
     refetch();
