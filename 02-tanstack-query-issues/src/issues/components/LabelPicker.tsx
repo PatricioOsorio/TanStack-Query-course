@@ -11,6 +11,8 @@ export const LabelPicker = () => {
 
   if (isFetching) return <p>Loading...</p>;
 
+  if (!data || data?.length === 0) return <p>No data found</p>;
+
   return (
     <div className="flex gap-2 flex-wrap">
       {data?.map((item) => (
