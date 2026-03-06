@@ -25,7 +25,9 @@
       "@libs/*": ["src/libs/*"],
       "@helpers/*": ["src/helpers/*"],
       "@components/*": ["src/components/*"],
-      "@pages/*": ["src/pages/*"]
+      "@pages/*": ["src/pages/*"],
+      "@api/*": ["src/api/*"],
+      "@issues/*": ["src/issues/*"],
     }
   },
   "include": ["src"],

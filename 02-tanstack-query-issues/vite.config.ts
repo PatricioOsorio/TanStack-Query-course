@@ -10,7 +10,9 @@ export default defineConfig({
       '@libs': path.resolve(__dirname, './src/libs'),
       '@helpers': path.resolve(__dirname, './src/helpers'),
       '@components': path.resolve(__dirname, './src/components'),
+      '@api': path.resolve(__dirname, './src/api'),
       '@pages': path.resolve(__dirname, './src/pages'),
+      '@issues': path.resolve(__dirname, './src/issues'),
     },
   },
 });
