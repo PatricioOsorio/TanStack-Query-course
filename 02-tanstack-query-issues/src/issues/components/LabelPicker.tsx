@@ -3,9 +3,9 @@ import { Loading } from '@shared/components/Loading';
 
 export const LabelPicker = () => {
   const { labelsQuery } = useLabels();
-  const { isFetching, data } = labelsQuery;
+  const { isLoading, data } = labelsQuery;
 
-  if (isFetching) return <Loading />;
+  if (isLoading) return <Loading />;
 
   if (!data || data?.length === 0) return <p>No data found</p>;
 
