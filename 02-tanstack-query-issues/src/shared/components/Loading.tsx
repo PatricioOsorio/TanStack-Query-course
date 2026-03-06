@@ -1,11 +1,10 @@
-import type { ComponentPropsWithoutRef, PropsWithChildren } from 'react';
-
 import { cn } from '@utils/cn';
+import type { ComponentPropsWithoutRef, PropsWithChildren } from 'react';
 
 export type ILoadingProps = ComponentPropsWithoutRef<'span'> & PropsWithChildren;
 
 const Loading = ({ className }: ILoadingProps) => {
-  return <span className={cn('loading loading-spinner loading-md w-fit h-fit', className)}></span>;
+  return <span className={cn('loading loading-spinner loading-md text-success', className)}></span>;
 };
 
 const LoadingFullPage = () => {

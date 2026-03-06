@@ -5,7 +5,7 @@ import { ILabelsResponse } from '@issues/interfaces/label.response';
 export const getLabels = async (): Promise<ILabelsResponse[]> => {
   await sleep();
 
-  const { data } = await githubApi.get('/labels');
+  const { data } = await githubApi.get<ILabelsResponse[]>('/labels');
 
   return data;
 };
