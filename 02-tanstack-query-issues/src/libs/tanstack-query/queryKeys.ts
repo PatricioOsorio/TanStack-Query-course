@@ -1,4 +1,4 @@
 export const queryKeys = {
   labels: () => ['labels'] as const,
-  issues: () => ['issues'] as const,
+  issues: (number?: number) => ['issues', number] as const,
 };

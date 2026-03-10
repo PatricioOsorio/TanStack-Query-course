@@ -27,7 +27,7 @@ export const IssueItem = ({ issue, isLoading }: IIssuesItemProps) => {
           <div className="min-w-0 flex-1">
             <button
               type="button"
-              onClick={() => navigate(`/issues/issue/${issue.id}`)}
+              onClick={() => navigate(`/issues/issue/${issue.number}`)}
               className="line-clamp-2 text-left text-[15px] font-semibold leading-snug hover:underline"
             >
               {issue.title}
