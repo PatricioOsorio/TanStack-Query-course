@@ -2,10 +2,12 @@ import { z } from 'zod';
 
 const envSchema = z.object({
   VITE_GITHUB_TOKEN: z.string().min(1, 'Missing environment variable: VITE_GITHUB_TOKEN'),
+  VITE_GITHUB_ISSUES_URL: z.string().min(1, 'Missing environment variable: VITE_GITHUB_ISSUES_URL'),
 });
 
 interface IEnv {
   GITHUB_TOKEN: string;
+  GITHUB_ISSUES_URL: string;
 }
 
 function getEnv(): IEnv {
@@ -21,6 +23,7 @@ function getEnv(): IEnv {
 
   return {
     GITHUB_TOKEN: parsed.data.VITE_GITHUB_TOKEN,
+    GITHUB_ISSUES_URL: parsed.data.VITE_GITHUB_ISSUES_URL,
   };
 }
 
