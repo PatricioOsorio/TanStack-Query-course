@@ -7,20 +7,23 @@ interface Props {
 
 export const IssueComment: FC<Props> = ({ body }) => {
   return (
-    <div className="w-full">
-      <div className="border border-gray-200 mt-2 rounded-md shadow-sm">
-        <div className="flex items-center bg-blue-500 text-white p-2 rounded-t-md">
-          <img
-            src="https://avatars.githubusercontent.com/u/1933404?v=4"
-            alt="User Avatar"
-            className="w-8 h-8 rounded-full"
-          />
-          <span className="mx-2">Pandaiolo commented</span>
+    <article className="overflow-hidden rounded-xl border border-base-300 bg-base-100/80">
+      <header className="flex items-center gap-3 border-b border-base-300 bg-base-200/60 px-4 py-3">
+        <div className="avatar">
+          <div className="w-9 rounded-full ring ring-base-300 ring-offset-2 ring-offset-base-100">
+            <img src="https://avatars.githubusercontent.com/u/1933404?v=4" alt="User Avatar" />
+          </div>
         </div>
-        <div className="p-4 bg-gray-700 text-white">
-          <ReactMarkdown>{body}</ReactMarkdown>
+
+        <div>
+          <p className="font-semibold leading-none">Pandaiolo</p>
+          <p className="text-xs opacity-70">commented</p>
         </div>
+      </header>
+
+      <div className="p-4 text-sm leading-relaxed md:p-5">
+        <ReactMarkdown>{body}</ReactMarkdown>
       </div>
-    </div>
+    </article>
   );
 };

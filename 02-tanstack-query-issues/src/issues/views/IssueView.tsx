@@ -13,23 +13,24 @@ export const IssueView = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="mb-5">
-      <div className="mb-4">
-        <button
-          onClick={() => navigate(-1)}
-          className="hover:underline text-blue-400 flex items-center"
-        >
-          <FiSkipBack />
-          Regresar
-        </button>
-      </div>
+    <div className="space-y-4">
+      <button onClick={() => navigate(-1)} className="btn btn-ghost btn-sm gap-2">
+        <FiSkipBack />
+        Regresar
+      </button>
 
-      {/* Primer comentario */}
-      <IssueComment body={comment1} />
+      <section className="rounded-2xl border border-base-300 bg-base-200/30 p-4 md:p-6">
+        <div className="mb-4 flex items-center justify-between">
+          <h2 className="text-xl font-bold">Discussion</h2>
+          <span className="badge badge-outline">3 comments</span>
+        </div>
 
-      {/* Comentario de otros */}
-      <IssueComment body={comment2} />
-      <IssueComment body={comment3} />
+        <div className="space-y-4">
+          <IssueComment body={comment1} />
+          <IssueComment body={comment2} />
+          <IssueComment body={comment3} />
+        </div>
+      </section>
     </div>
   );
 };

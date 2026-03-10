@@ -6,7 +6,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 import { router } from './router';
 
-import './index.css';
+import "./styles/app.css"
 
 const queryClient = new QueryClient();
 

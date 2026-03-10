@@ -9,7 +9,7 @@ const Loading = ({ className }: ILoadingProps) => {
 
 const LoadingFullPage = () => {
   return (
-    <div className="w-dvw h-dvh grid place-items-center">
+    <div className="w-full h-full grid place-items-center ">
       <Loading />
     </div>
   );

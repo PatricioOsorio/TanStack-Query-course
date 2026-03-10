@@ -7,7 +7,7 @@ export const useLabels = () => {
   const labelsQuery = useQuery({
     queryKey: queryKeys.labels(),
     queryFn: getLabelsAction,
-    staleTime: 1000 * 60 * 60, // 1h
+    // staleTime: 1000 * 60 * 60, // 1h
 
     placeholderData: [
       {

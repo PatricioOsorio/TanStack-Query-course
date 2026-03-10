@@ -10,15 +10,15 @@ export const LabelPicker = () => {
   if (!data || data?.length === 0) return <p>No data found</p>;
 
   return (
-    <div className="flex gap-2 flex-wrap">
+    <div className="flex flex-wrap gap-2">
       {data?.map((item) => (
-        <span
+        <button
           key={item.id}
-          className="px-2 py-1 rounded-full text-xs font-semibold hover:bg-slate-800 cursor-pointer animate-fadeIn"
-          style={{ border: `1px solid #${item.color}` }}
+          className="badge badge-outline badge-lg cursor-pointer transition-colors hover:bg-base-300"
+          style={{ borderColor: `#${item.color}` }}
         >
           {item.name}
-        </span>
+        </button>
       ))}
     </div>
   );
