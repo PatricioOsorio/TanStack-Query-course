@@ -35,12 +35,18 @@ export const IssueItem = ({ issue, isLoading }: IIssuesItemProps) => {
     });
   };
 
+  const presetData = () => {
+    queryClient.setQueryData(queryKeys.issues(issue.number), issue, {
+      updatedAt: Date.now() + 1000 * 60, // 1 minutes
+    });
+  };
+
   const daysAgo = getRelativeTime(issue.created_at);
 
   return (
     <article
       className="card border border-base-300 bg-base-100/80 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md"
-      onMouseEnter={handlePrefetchData}
+      onMouseEnter={presetData}
     >
       <div className="card-body p-4">
         <div className="flex items-start gap-3">
