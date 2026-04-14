@@ -1,10 +1,18 @@
 import { IssueList } from '@issues/components/IssueList';
 import { LabelPicker } from '@issues/components/LabelPicker';
 import { useIssues } from '@issues/hooks/useIssues';
+import { State } from '@issues/interfaces/issues.response';
+import { useState } from 'react';
 
 export const ListView = () => {
+  const [issueState, setIssueState] = useState<State>(State.All);
+
   const { issuesQuery } = useIssues();
   const { isLoading, data: issues } = issuesQuery;
+
+  const handleStatusChange = (status: State) => {
+    setIssueState(status);
+  }
 
   return (
     <div className="grid grid-cols-1 gap-6 lg:grid-cols-[minmax(0,1fr)_18rem] lg:gap-8">
@@ -23,14 +31,16 @@ export const ListView = () => {
           </span>
         </div>
 
-        <IssueList values={issues} isLoading={isLoading} />
+        <IssueList values={issues} activeItem={issueState} isLoading={isLoading} onStatusChange={handleStatusChange} />
       </section>
 
       <aside className="surface-panel surface-panel-glow lg:sticky lg:top-6 soft-rise [animation-delay:80ms]">
         <div className="mb-5 space-y-2 border-b border-base-300/60 pb-4">
           <p className="section-kicker">Segmentación</p>
           <h3 className="text-xl font-bold tracking-tight">Filtrar por etiquetas</h3>
-          <p className="text-sm leading-6 text-base-content/62">Ordena la exploración por temas relevantes.</p>
+          <p className="text-sm leading-6 text-base-content/62">
+            Ordena la exploración por temas relevantes.
+          </p>
         </div>
 
         <div className="space-y-4">

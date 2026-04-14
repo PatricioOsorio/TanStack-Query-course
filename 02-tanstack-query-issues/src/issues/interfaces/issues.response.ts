@@ -9,8 +9,8 @@ export interface IIssuesResponse {
   node_id:                     string;
   number:                      number;
   title:                       string;
-  user:                        User;
-  labels:                      Label[];
+  user:                        IUser;
+  labels:                      ILabel[];
   state:                       State;
   locked:                      boolean;
   assignees:                   unknown[];
@@ -24,15 +24,15 @@ export interface IIssuesResponse {
   type:                        null;
   active_lock_reason:          null;
   draft?:                      boolean;
-  pull_request?:               PullRequest;
+  pull_request?:               IPullRequest;
   body:                        string;
   closed_by:                   null;
-  reactions:                   Reactions;
+  reactions:                   IReactions;
   timeline_url:                string;
   performed_via_github_app:    null;
   state_reason:                null;
-  sub_issues_summary?:         SubIssuesSummary;
-  issue_dependencies_summary?: IssueDependenciesSummary;
+  sub_issues_summary?:         ISubIssuesSummary;
+  issue_dependencies_summary?: IIssueDependenciesSummary;
   pinned_comment?:             null;
 }
 
@@ -42,14 +42,14 @@ export enum AuthorAssociation {
   None = "NONE",
 }
 
-export interface IssueDependenciesSummary {
+export interface IIssueDependenciesSummary {
   blocked_by:       number;
   total_blocked_by: number;
   blocking:         number;
   total_blocking:   number;
 }
 
-export interface Label {
+export interface ILabel {
   id:          number;
   node_id:     string;
   url:         string;
@@ -59,7 +59,7 @@ export interface Label {
   description: null | string;
 }
 
-export interface PullRequest {
+export interface IPullRequest {
   url:       string;
   html_url:  string;
   diff_url:  string;
@@ -67,7 +67,7 @@ export interface PullRequest {
   merged_at: null;
 }
 
-export interface Reactions {
+export interface IReactions {
   url:         string;
   total_count: number;
   "+1":        number;
@@ -81,17 +81,18 @@ export interface Reactions {
 }
 
 export enum State {
+  All = "all",
   Open = "open",
   Closed = "closed"
 }
 
-export interface SubIssuesSummary {
+export interface ISubIssuesSummary {
   total:             number;
   completed:         number;
   percent_completed: number;
 }
 
-export interface User {
+export interface IUser {
   login:               string;
   id:                  number;
   node_id:             string;
