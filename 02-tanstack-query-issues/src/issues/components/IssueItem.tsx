@@ -20,8 +20,6 @@ export const IssueItem = ({ issue, isLoading }: IIssuesItemProps) => {
   if (isLoading) return <Loading />;
 
   const handlePrefetchData = async () => {
-    console.log('prefetching...');
-
     queryClient.prefetchQuery({
       queryKey: queryKeys.issues(issue.number),
       queryFn: () => getIssueAction(issue.number),
@@ -41,16 +39,23 @@ export const IssueItem = ({ issue, isLoading }: IIssuesItemProps) => {
     });
   };
 
+  const warmCache = () => {
+    presetData();
+    void handlePrefetchData();
+  };
+
   const daysAgo = getRelativeTime(issue.created_at);
 
   return (
     <article
-      className="card border border-base-300 bg-base-100/80 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md"
-      onMouseEnter={presetData}
+      className="group relative overflow-hidden rounded-[1.5rem] border border-base-300/70 bg-base-100/78 shadow-[0_16px_40px_-34px_rgba(15,23,42,0.32)] transition-all duration-300 hover:-translate-y-0.5 hover:border-base-300 hover:shadow-[0_22px_48px_-36px_rgba(15,23,42,0.4)]"
+      onMouseEnter={warmCache}
     >
-      <div className="card-body p-4">
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
+
+      <div className="card-body gap-0 p-5 md:p-6">
         <div className="flex items-start gap-3">
-          <div className="mt-0.5 rounded-lg bg-error/10 p-2 text-error">
+          <div className="mt-0.5 rounded-2xl bg-primary/6 p-2.5 text-primary/70 ring-1 ring-primary/12">
             <FiInfo size={20} />
           </div>
 
@@ -58,13 +63,14 @@ export const IssueItem = ({ issue, isLoading }: IIssuesItemProps) => {
             <button
               type="button"
               onClick={() => navigate(`/issues/issue/${issue.number}`)}
-              className="line-clamp-2 text-left text-[15px] font-semibold leading-snug hover:underline"
+              onFocus={warmCache}
+              className="line-clamp-2 text-left text-base font-semibold leading-snug transition-colors duration-200 hover:text-primary md:text-lg"
             >
               {issue.title}
             </button>
 
-            <p className="mt-2 flex flex-wrap items-center gap-2 text-sm opacity-80">
-              <span className="badge badge-ghost badge-sm">#{issue.number}</span>
+            <p className="mt-3 flex flex-wrap items-center gap-2 text-sm text-base-content/62">
+              <span className="badge badge-outline badge-sm rounded-full border-primary/20 bg-primary/5 text-primary/70">#{issue.number}</span>
               <span>opened {daysAgo} days ago</span>
               <span>•</span>
               <span>
@@ -77,10 +83,10 @@ export const IssueItem = ({ issue, isLoading }: IIssuesItemProps) => {
             <img
               src={issue.user.avatar_url}
               alt={`Avatar de ${issue.user.login}`}
-              className="h-9 w-9 rounded-full ring-2 ring-base-300"
+              className="h-9 w-9 rounded-full ring-2 ring-base-300/70"
             />
 
-            <span className="badge badge-outline gap-1">
+            <span className="badge badge-outline border-primary/20 bg-primary/5 gap-1.5 rounded-full px-3 py-3 text-primary/70">
               <FiMessageSquare size={14} />
               {issue.comments}
             </span>

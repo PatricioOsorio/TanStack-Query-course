@@ -12,3 +12,84 @@
 @import './base/typography.css';
 
 @import './utilities/layout.css';
+
+@keyframes soft-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes soft-rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@layer components {
+  .issue-markdown :where(p, ul, ol, blockquote, pre, table) {
+    margin-top: 0.9rem;
+  }
+
+  .issue-markdown :where(p:first-child, ul:first-child, ol:first-child, blockquote:first-child, pre:first-child, table:first-child) {
+    margin-top: 0;
+  }
+
+  .issue-markdown :where(ul, ol) {
+    padding-left: 1.25rem;
+  }
+
+  .issue-markdown :where(li + li) {
+    margin-top: 0.35rem;
+  }
+
+  .issue-markdown a {
+    color: color-mix(in oklab, var(--color-base-content) 68%, var(--color-primary));
+    text-decoration: underline;
+    text-decoration-color: color-mix(in oklab, var(--color-primary) 24%, transparent);
+    text-underline-offset: 0.18em;
+  }
+
+  .issue-markdown code {
+    border-radius: 0.5rem;
+    background: color-mix(in oklab, var(--color-base-300) 38%, transparent);
+    padding: 0.15rem 0.4rem;
+    font-size: 0.95em;
+    font-weight: 600;
+    color: color-mix(in oklab, var(--color-base-content) 76%, var(--color-primary));
+  }
+
+  .issue-markdown pre {
+    overflow-x: auto;
+    border-radius: 1rem;
+    border: 1px solid color-mix(in oklab, var(--color-base-300) 80%, transparent);
+    background: color-mix(in oklab, var(--color-base-200) 80%, transparent);
+    padding: 1rem;
+  }
+
+  .issue-markdown pre code {
+    padding: 0;
+    background: transparent;
+    color: inherit;
+    font-weight: inherit;
+  }
+
+  .issue-markdown blockquote {
+    border-left: 4px solid color-mix(in oklab, var(--color-primary) 26%, transparent);
+    background: color-mix(in oklab, var(--color-primary) 5%, transparent);
+    padding: 0.9rem 1rem;
+    font-style: italic;
+    color: color-mix(in oklab, var(--color-base-content) 84%, transparent);
+  }
+
+  .issue-markdown img {
+    border-radius: 1rem;
+  }
+}
